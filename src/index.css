@@ -1,5 +1,35 @@
 @import "tailwindcss";
 
+/* ── GLOBAL SCROLLBAR KILL — hides ALL scrollbars, all elements, all browsers ── */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* ── Chat textarea scrollbar override — restore scrollbar when content overflows ── */
+textarea.chat-textarea {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(134, 150, 160, 0.5) transparent !important;
+  -ms-overflow-style: auto !important;
+}
+textarea.chat-textarea::-webkit-scrollbar {
+  display: block !important;
+  width: 4px !important;
+  height: auto !important;
+}
+textarea.chat-textarea::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+textarea.chat-textarea::-webkit-scrollbar-thumb {
+  background: rgba(134, 150, 160, 0.5) !important;
+  border-radius: 4px !important;
+}
+
 @theme {
   --color-whatsapp-teal: #075E54;
   --color-whatsapp-teal-dark: #054c44;
@@ -17,24 +47,36 @@
 :root {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color-scheme: light;
-  background-color: #e5e5e5; /* Background for the simulator */
+  background-color: #e5e5e5;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  width: 100vw;
+}
+
+html {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE/Edge */
+}
+html::-webkit-scrollbar {
+  display: none;                  /* Chrome/Safari */
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Fallback */
-  height: 100dvh; /* Dynamic viewport height for mobile */
-  width: 100vw;
 }
 
 #root {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
